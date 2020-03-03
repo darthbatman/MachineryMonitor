@@ -57,22 +57,22 @@ import {
 
 class Dashboard extends React.Component {
   state = {
-      ch_1: {
+      ch_68: {
           labels: [],
           series: [[]],
           anomalies: [0, 0, 0]
       },
-      ch_2: {
+      ch_49: {
           labels: [],
           series: [[]],
           anomalies: [0, 0, 0]
       },
-      ch_3: {
+      ch_59: {
           labels: [],
           series: [[]],
           anomalies: [0, 0, 0]
       },
-      ch_4: {
+      ch_13: {
           labels: [],
           series: [[]],
           anomalies: [0, 0, 0]
@@ -93,10 +93,10 @@ class Dashboard extends React.Component {
       },
   }
   keyToFieldName = {
-    ch_1: "Channel 1",          
-    ch_2: "Channel 2",
-    ch_3: "Channel 3",
-    ch_4: "Channel 4",
+    ch_68: "Channel 68",          
+    ch_49: "Channel 49",
+    ch_59: "Channel 59",
+    ch_13: "Channel 13",
     ch_40: "Channel 40",
     ch_74: "Channel 74",
     anomaly: {
@@ -104,10 +104,10 @@ class Dashboard extends React.Component {
     }
   }
   keyToAnomaly = {
-    ch_1: "ch1AnomalyScore",          
-    ch_2: "ch4AnomalyScore",
-    ch_3: "ch3AnomalyScore",
-    ch_4: "ch4AnomalyScore",
+    ch_68: "ch68AnomalyScore",          
+    ch_49: "ch4AnomalyScore",
+    ch_59: "ch3AnomalyScore",
+    ch_13: "ch4AnomalyScore",
     ch_40: "ch40AnomalyScore",
     ch_74: "ch74AnomalyScore",
   }
@@ -155,31 +155,31 @@ class Dashboard extends React.Component {
   }
   refreshView(state) {
       let curr = this.data
-      let ch_1 = state.ch_1
-      let ch_2 = state.ch_2
-      let ch_3 = state.ch_3
-      let ch_4 = state.ch_4
+      let ch_68 = state.ch_68
+      let ch_49 = state.ch_49
+      let ch_59 = state.ch_59
+      let ch_13 = state.ch_13
       let ch_40 = state.ch_40
       let ch_74 = state.ch_74
       let anomaly = state.anomaly
       let bigBoyThis = this;
       curr = JSON.parse(curr);
-      // ["ch_1", "ch_2", "ch_3", "ch_4", "ch_40", "ch_74", "ANOMALY_SCORE", "ch_1_ANOMALY_SCORE", "ch_2_ANOMALY_SCORE", "ch_3_ANOMALY_SCORE", "ch_4_ANOMALY_SCORE", "ch_40_ANOMALY_SCORE", "ch_74_ANOMALY_SCORE"]
+      // ["ch_68", "ch_49", "ch_59", "ch_13", "ch_40", "ch_74", "ANOMALY_SCORE", "ch_68_ANOMALY_SCORE", "ch_49_ANOMALY_SCORE", "ch_59_ANOMALY_SCORE", "ch_13_ANOMALY_SCORE", "ch_40_ANOMALY_SCORE", "ch_74_ANOMALY_SCORE"]
       Object.keys(curr).map(function(key) {
           switch(key) {
-              case "ch_1":
-                  ch_1 = bigBoyThis.update(ch_1, 0, curr[key])
+              case "ch_68":
+                  ch_68 = bigBoyThis.update(ch_68, 0, curr[key])
                   break;
-              case "ch_2":
-                  ch_2 = bigBoyThis.update(ch_2, 0, curr[key])
-                  break;
-
-              case "ch_3":
-                  ch_3 = bigBoyThis.update(ch_3, 0, curr[key])
+              case "ch_49":
+                  ch_49 = bigBoyThis.update(ch_49, 0, curr[key])
                   break;
 
-              case "ch_4":
-                  ch_4 = bigBoyThis.update(ch_4, 0, curr[key])
+              case "ch_59":
+                  ch_59 = bigBoyThis.update(ch_59, 0, curr[key])
+                  break;
+
+              case "ch_13":
+                  ch_13 = bigBoyThis.update(ch_13, 0, curr[key])
                   break;
               
               case "ch_40":
@@ -195,24 +195,24 @@ class Dashboard extends React.Component {
                   anomaly = bigBoyThis.update(anomaly, 1, curr[key])
                   break
 
-              case "ch_1_ANOMALY_SCORE":
-                  ch_1.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
-                  bigBoyThis.setState({ ch1AnomalyScore: curr[key]})
+              case "ch_68_ANOMALY_SCORE":
+                  ch_68.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
+                  bigBoyThis.setState({ ch68AnomalyScore: curr[key]})
                   break
 
-              case "ch_2_ANOMALY_SCORE":
-                  bigBoyThis.setState({ ch2AnomalyScore: curr[key]})
-                  ch_2.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
+              case "ch_49_ANOMALY_SCORE":
+                  bigBoyThis.setState({ ch49AnomalyScore: curr[key]})
+                  ch_49.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
                   break
 
-              case "ch_3_ANOMALY_SCORE":
-                  bigBoyThis.setState({ ch3AnomalyScore: curr[key]})
-                  ch_3.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
+              case "ch_59_ANOMALY_SCORE":
+                  bigBoyThis.setState({ ch59AnomalyScore: curr[key]})
+                  ch_59.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
                   break
 
-              case "ch_4_ANOMALY_SCORE":
-                  bigBoyThis.setState({ ch4AnomalyScore: curr[key]})
-                  ch_4.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
+              case "ch_13_ANOMALY_SCORE":
+                  bigBoyThis.setState({ ch13AnomalyScore: curr[key]})
+                  ch_13.anomalies[bigBoyThis.getAnomalyLevel(curr[key])]++
                   break
 
               case "ch_40_ANOMALY_SCORE":
@@ -228,10 +228,10 @@ class Dashboard extends React.Component {
       })
 
       return {
-          ch_1: ch_1,          
-          ch_2: ch_2,
-          ch_3: ch_3,
-          ch_4: ch_4,
+          ch_68: ch_68,          
+          ch_49: ch_49,
+          ch_59: ch_59,
+          ch_13: ch_13,
           ch_40: ch_40,
           ch_74: ch_74,
           anomaly: anomaly,

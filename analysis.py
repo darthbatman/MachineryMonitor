@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 import random
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def reject_outliers(data, m=2):
@@ -35,4 +36,31 @@ for file in files[:1]:
                 row += str(0) + ',' + str(0) + ',' + str(0) + ',' + str(0) + ',' + str(0) + ',' + str(0) + '\n'
             wf.write(row)
         wf.close()
+        c = np.cov(data)
+        second_min_cov = c.flatten().argsort()[::-1][-2:][::-1][1]
+        second_min_cov = np.unravel_index(second_min_cov, c.shape)
+        third_min_cov = c.flatten().argsort()[::-1][-4:][::-1][3]
+        third_min_cov = np.unravel_index(third_min_cov, c.shape)
+        fourth_min_cov = c.flatten().argsort()[::-1][-6:][::-1][5]
+        fourth_min_cov = np.unravel_index(fourth_min_cov, c.shape)
+        fifth_min_cov = c.flatten().argsort()[::-1][-8:][::-1][7]
+        fifth_min_cov = np.unravel_index(fifth_min_cov, c.shape)
+        sixth_min_cov = c.flatten().argsort()[::-1][-10:][::-1][9]
+        sixth_min_cov = np.unravel_index(sixth_min_cov, c.shape)
+        seventh_min_cov = c.flatten().argsort()[::-1][-12:][::-1][11]
+        seventh_min_cov = np.unravel_index(seventh_min_cov, c.shape)
+        eighth_min_cov = c.flatten().argsort()[::-1][-36:][::-1][35]
+        eighth_min_cov = np.unravel_index(eighth_min_cov, c.shape)
+        ninth_min_cov = c.flatten().argsort()[::-1][-92:][::-1][91]
+        ninth_min_cov = np.unravel_index(ninth_min_cov, c.shape)
+        min_cov = np.unravel_index(np.argmin(c), c.shape)
+        print('min_cov: ' + str(list(chanIDs.keys())[min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[min_cov[1]]))
+        print('second_min_cov: ' + str(list(chanIDs.keys())[second_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[second_min_cov[1]]))
+        print('third_min_cov: ' + str(list(chanIDs.keys())[third_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[third_min_cov[1]]))
+        print('fourth_min_cov: ' + str(list(chanIDs.keys())[fourth_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[fourth_min_cov[1]]))
+        print('fifth_min_cov: ' + str(list(chanIDs.keys())[fifth_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[fifth_min_cov[1]]))
+        print('sixth_min_cov: ' + str(list(chanIDs.keys())[sixth_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[sixth_min_cov[1]]))
+        print('seventh_min_cov: ' + str(list(chanIDs.keys())[seventh_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[seventh_min_cov[1]]))
+        print('eighth_min_cov: ' + str(list(chanIDs.keys())[eighth_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[eighth_min_cov[1]]))
+        print('ninth_min_cov: ' + str(list(chanIDs.keys())[ninth_min_cov[0]]) + ' and ' + str(list(chanIDs.keys())[ninth_min_cov[1]]))
     rf.close()
